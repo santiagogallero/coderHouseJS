@@ -1,10 +1,5 @@
 //FUNCIONES
-const creditos =[
-    {tipo: "personal", tasaInteres: 0.05 },
-    {tipo: "hipotecario", tasaInteres: 0.03 },
-    {tipo:"automotriz", tasaInteres: 0.04 }
 
-];
 function obtenerDatosUsuario() {
     const campos = [
         { nombre: "montoCredit", mensaje: "Ingrese el monto del crédito: " },
@@ -18,21 +13,23 @@ function obtenerDatosUsuario() {
         let isValid = false;
         while (!isValid) {
             const valor = prompt(campo.mensaje);
-          if (valor === null) return null; // Si presionó Cancelar, devolver null
+            if (valor === null) return null; // Si presionó Cancelar, devolver null
+
             if (campo.nombre === "montoCredit" || campo.nombre === "plazoDeseado") {
-            if (parseFloat(valor) > 0) {
-                datos[campo.nombre] = parseFloat(valor);
-                isValid = true;
-            } else {
-                alert(`El ${campo.nombre} debe ser un número positivo`);
-            }
-            } else if (campo.nombre === "tipoCredit") {
-            if (creditos.some((credito) => credito.tipo === valor)) {
-                datos[campo.nombre] = valor;
-                isValid = true;
-            } else {
-                alert(`El tipo de crédito "${valor}" no es válido. Intente nuevamente.`);
-            }
+
+                if (parseFloat(valor) > 0) {
+                    datos[campo.nombre] = parseFloat(valor);
+                    isValid = true;
+                } else {
+                    alert(`El ${campo.nombre} debe ser un número positivo`);
+                }
+                } else if (campo.nombre === "tipoCredit") {
+                if (creditos.some((credito) => credito.tipo === valor)) {
+                    datos[campo.nombre] = valor;
+                    isValid = true;
+                } else {
+                    alert(`El tipo de crédito "${valor}" no es válido. Intente nuevamente.`);
+                }
             }
         }
     }
@@ -63,3 +60,10 @@ function calcularCuotaMensual(monto,plazo,tasaInteres){
     const cuotaMensual=monto * (tasaInteres/12)*(1+tasaInteres/12)**plazo;
     return cuotaMensual;
 }
+//declaracion Variables
+const creditos =[
+    {tipo: "personal", tasaInteres: 0.05 },
+    {tipo: "hipotecario", tasaInteres: 0.03 },
+    {tipo:"automotriz", tasaInteres: 0.04 }
+
+];
