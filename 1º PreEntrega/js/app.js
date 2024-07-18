@@ -5,41 +5,39 @@ const creditos =[
     {tipo:"automotriz", tasaInteres: 0.04 }
 
 ];
-function obtenerDatosUsuario(){
-    let montoCredit;
-    let tipoCredit;
-    let plazoDeseado;
-
+function obtenerDatosUsuario() {
+    const campos = [
+        { nombre: "montoCredit", mensaje: "Ingrese el monto del crédito: " },
+        { nombre: "tipoCredit", mensaje: "Ingrese el tipo de crédito (Personal, Hipotecario, Automotriz): " },
+        { nombre: "plazoDeseado", mensaje: "Ingrese el plazo deseado (en meses): " }
+        ];
     
-    // Verificar monto de credito
-    while (true) {
-        montoCredit = parseFloat(prompt("Ingrese el monto del crédito: "));
-        if (montoCredit === null) break; // Si presionó Cancelar, salir del bucle
-        if (montoCredit > 0) break; // Si el monto es válido, salir del bucle
-        alert("El monto del crédito debe ser un número positivo");
+    const datos = {};
+    
+    for (const campo of campos) {
+        let isValid = false;
+        while (!isValid) {
+            const valor = prompt(campo.mensaje);
+          if (valor === null) return null; // Si presionó Cancelar, devolver null
+            if (campo.nombre === "montoCredit" || campo.nombre === "plazoDeseado") {
+            if (parseFloat(valor) > 0) {
+                datos[campo.nombre] = parseFloat(valor);
+                isValid = true;
+            } else {
+                alert(`El ${campo.nombre} debe ser un número positivo`);
+            }
+            } else if (campo.nombre === "tipoCredit") {
+            if (creditos.some((credito) => credito.tipo === valor)) {
+                datos[campo.nombre] = valor;
+                isValid = true;
+            } else {
+                alert(`El tipo de crédito "${valor}" no es válido. Intente nuevamente.`);
+            }
+            }
+        }
     }
-
-
-
-    // Verificar tipo credito
-    while (true) {
-        tipoCredit = prompt("Ingrese el tipo de crédito (Personal, Hipotecario, Automotriz): ");
-        if (tipoCredit === null) return null; // Si presionó Cancelar, devolver null
-        if (creditos.some((credito) => credito.tipo === tipoCredit)) break;
-        alert("Tipo de crédito no válido. Intente nuevamente.");
-    }
-
-    // Verificar plazo deseado
-    while (true) {
-        plazoDeseado = parseFloat(prompt("Ingrese el plazo deseado (en meses): "));
-        if (plazoDeseado === null) return null; // Si presionó Cancelar, devolver null
-        if (plazoDeseado > 0) break;
-        alert("El plazo deseado debe ser un número positivo");
-    }
-
-
-    return { montoCredit, tipoCredit, plazoDeseado };
-
+    
+        return datos;
 }
 
 function simularCredito(){
