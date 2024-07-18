@@ -1,0 +1,1 @@
+Buenas noches profe, hice el simulador de prestamos porque es el mas fácil de pensarlo pero tuve problema en la verificación de los datos porque si aprieto cancelar no me sale del bucle pero aun así puse para que salga pero nose lo que pasa. Si lo prueba con datos correctos funciona.  saludos
