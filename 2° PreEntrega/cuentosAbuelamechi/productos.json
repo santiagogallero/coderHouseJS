@@ -1,0 +1,27 @@
+[
+    {"name":"cuentos de mi planeta",
+        "id":"001",
+        "type":"Cuento para niños",
+        "price":2000,
+        "stock":10,
+        "description":"200 paginas, dibujos, tapa dura"
+    },
+    {"name":"cuentos para joaquin",
+    "id":"002",
+    "type":"Cuento para adultos",
+    "price":2500,
+    "stock":15,
+    "description": "250 paginas, dibujos, tapa dura"
+    },
+
+    {"name":"cuentos de la abuela mechi",
+    "id":"003",
+    "type":"Cuento para niños",
+    "price":2000,
+    "stock":10,
+    "description":"200 paginas, dibujos, tapa dura"
+    }
+
+    
+]
+
